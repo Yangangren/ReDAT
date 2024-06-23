@@ -12,10 +12,14 @@ import shutil
 import time
 import json
 import os
+import sys
 import heapq
 import traci
 import pickle
 from math import cos, sin, pi
+proj_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.dirname(__file__))
+sys.path.append(proj_root)
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -42,7 +46,7 @@ from multi_evaluation_podar.multi_evaluation import Evaluator as PodarEvaluator
 
 class HierarchicalDecision(object):
     def __init__(self, train_exp_dir, ite, noise_model, logdir=None):
-        self.policy = LoadPolicy('../utils/models/{}/{}'.format(noise_model, train_exp_dir), ite)
+        self.policy = LoadPolicy('../../algorithm/results/CrossroadEnd2endMix-v0/{}/{}'.format(noise_model, train_exp_dir), ite)
         self.args = self.policy.args
         self.env = CrossroadEnd2endMix(mode='testing', future_point_num=self.args.num_rollout_list_for_policy_update[0])
         self.model = EnvironmentModel(mode='testing')
@@ -828,11 +832,11 @@ def plot_and_save_ith_episode_data(logdir, i):
 
 def main():
     time_now = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    logdir = './gep-results/{time}'.format(time=time_now)
+    logdir = './results/{time}'.format(time=time_now)
     os.makedirs(logdir)
-    hier_decision = HierarchicalDecision('experiment-2023-02-16-11-01-26', 300000, 'no_noise', logdir)
+    hier_decision = HierarchicalDecision('experiment-2024-06-23-16-09-20', 200, 'adv_noise', logdir)
     travel_time, travel_dist = [], []
-    max_time = 1200
+    max_time = 100
     for i in range(20):
         episode_start_time = time.time()
         for j in range(max_time):

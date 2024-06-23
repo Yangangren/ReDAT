@@ -2,9 +2,9 @@
 Learn a Robust Policy for Real-world Driving with Adversarial Reinforcement Learning
 
 ## Requires
-1. Ubuntu 18.04 LTS is necessary.
-2. [SUMO](https://sourceforge.net/projects/sumo/files/sumo/) must be installed with version from 1.13.0 to 1.16.0.
-3. Python 3.8.
+1. Ubuntu 18.04 or 20.04 LTS is necessary.
+2. [SUMO](https://sourceforge.net/projects/sumo/files/sumo/) must be installed with version from 1.13.0 to 1.19.0.
+3. Python 3.8 or 3.9.
 4. The installation path must be in English.
 
 ## Installation
@@ -14,7 +14,7 @@ Learn a Robust Policy for Real-world Driving with Adversarial Reinforcement Lear
 git clone https://github.com/Yangangren/ReDAT.git
 cd ReDAT
 # create conda environment
-conda env create -f xxxx.yml
+conda env create -f ReDAT.yml
 conda activate ReDAT
 # install ReDAT
 pip install -e.

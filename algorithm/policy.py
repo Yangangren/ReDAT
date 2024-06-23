@@ -10,7 +10,7 @@
 import tensorflow as tf
 from tensorflow.keras.optimizers.schedules import PolynomialDecay
 
-from algorithm.model import MLPNet, AttentionNet, ADVNet
+from model import MLPNet, AttentionNet, ADVNet
 
 NAME2MODELCLS = dict([('MLP', MLPNet), ('Attention', AttentionNet), ('Adversary', ADVNet)])
 

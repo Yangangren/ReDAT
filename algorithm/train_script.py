@@ -1,29 +1,24 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# =====================================
-# @Time    : 2020/9/1
-# @Author  : Yang Guan (Tsinghua Univ.)
-# @FileName: train_script.py
-# =====================================
-
 import argparse
 import datetime
 import json
 import logging
 import os
+import sys
+proj_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(__file__))
+sys.path.append(proj_root)
 
 import ray
 
-from algorithm.buffer import ReplayBufferWithAttention
-from algorithm.evaluator import EvaluatorWithAttention
-from algorithm.ampc import AMPCLearnerWithAttention
-from algorithm.optimizer import OffPolicyAsyncOptimizer, SingleProcessOffPolicyOptimizer
-from algorithm.policy import AttentionPolicy4Toyota
-from algorithm.tester import Tester
-from algorithm.trainer import Trainer
-from algorithm.worker import OffPolicyWorkerWithAttention
-from algorithm.utils.misc import args2envkwargs
+from buffer import ReplayBufferWithAttention
+from evaluator import EvaluatorWithAttention
+from ampc import AMPCLearnerWithAttention
+from optimizer import OffPolicyAsyncOptimizer, SingleProcessOffPolicyOptimizer
+from policy import AttentionPolicy4Toyota
+from tester import Tester
+from trainer import Trainer
+from worker import OffPolicyWorkerWithAttention
+from utils.misc import args2envkwargs
 
 from env_build.endtoend import CrossroadEnd2endMix
 
@@ -99,7 +94,7 @@ def built_AMPC_parser():
     parser.add_argument('--pf_amplifier', type=float, default=1.)
 
     # worker
-    parser.add_argument('--batch_size', type=int, default=256)
+    parser.add_argument('--batch_size', type=int, default=128)
     parser.add_argument('--worker_log_interval', type=int, default=5)
     parser.add_argument('--explore_sigma', type=float, default=None)
 
@@ -151,14 +146,14 @@ def built_AMPC_parser():
     # optimizer (PABAL)
     parser.add_argument('--max_sampled_steps', type=int, default=0)
     parser.add_argument('--max_iter', type=int, default=300000)
-    parser.add_argument('--num_workers', type=int, default=10)  # use a small value for debug
-    parser.add_argument('--num_learners', type=int, default=16)
-    parser.add_argument('--num_buffers', type=int, default=10)
+    parser.add_argument('--num_workers', type=int, default=2)  # use a small value for debug
+    parser.add_argument('--num_learners', type=int, default=2)
+    parser.add_argument('--num_buffers', type=int, default=2)
     parser.add_argument('--max_weight_sync_delay', type=int, default=300)
     parser.add_argument('--grads_queue_size', type=int, default=20)
-    parser.add_argument('--eval_interval', type=int, default=5000)
-    parser.add_argument('--save_interval', type=int, default=5000)
-    parser.add_argument('--log_interval', type=int, default=500)
+    parser.add_argument('--eval_interval', type=int, default=100)
+    parser.add_argument('--save_interval', type=int, default=100)
+    parser.add_argument('--log_interval', type=int, default=100)
 
     # IO
     args = parser.parse_args()
@@ -204,7 +199,7 @@ def main(alg_name):
     args = built_attention_parser(alg_name)
     logger.info('begin training agents with parameter {}'.format(str(args)))
     if args.mode == 'training':
-        ray.init(object_store_memory=5120 * 1024 * 1024)
+        ray.init(object_store_memory=2560 * 1024 * 1024)
         os.makedirs(args.result_dir)
         with open(args.result_dir + '/config.json', 'w', encoding='utf-8') as f:
             json.dump(vars(args), f, ensure_ascii=False, indent=4)

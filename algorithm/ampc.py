@@ -1,13 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# =====================================
-# @Time    : 2020/9/1
-# @Author  : Yang Guan (Tsinghua Univ.)
-# @FileName: ampc.py
-# =====================================
-
 import logging
+import os
+import sys
+proj_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(__file__))
+sys.path.append(proj_root)
 
 import numpy as np
 from env_build.dynamics_and_models import EnvironmentModel
@@ -145,7 +141,7 @@ class AMPCLearnerWithAttention(object):
         return obj_v_loss, obj_loss, punish_term_for_training, punish_loss, pg_loss,\
                real_punish_term, veh2veh4real, veh2road4real, veh2bike4real, veh2person4real, veh2speed4real, pf, policy_entropy
 
-    @tf.function
+    # @tf.function
     def forward_and_backward(self, mb_obs, ite, mb_future_n_point, mb_mask, mb_future_n_edge):
         with self.tf.GradientTape(persistent=True) as tape:
             obj_v_loss, obj_loss, punish_term_for_training, punish_loss, pg_loss, \

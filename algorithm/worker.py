@@ -1,13 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# =====================================
-# @Time    : 2020/9/1
-# @Author  : Yang Guan (Tsinghua Univ.)
-# @FileName: worker.py
-# =====================================
-
 import logging
+import os
+import sys
+proj_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(__file__))
+sys.path.append(proj_root)
 
 from env_build.endtoend import CrossroadEnd2endMix
 from env_build.endtoend_env_utils import *

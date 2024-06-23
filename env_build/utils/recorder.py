@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# =====================================
-# @Time    : 2020/12/11
-# @Author  : Yang Guan (Tsinghua Univ.)
-# @FileName: recorder.py
-# =====================================
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt

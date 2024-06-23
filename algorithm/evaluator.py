@@ -9,6 +9,10 @@
 
 import logging
 import os
+import sys
+proj_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(__file__))
+sys.path.append(proj_root)
 
 from env_build.endtoend import CrossroadEnd2endMix
 import numpy as np

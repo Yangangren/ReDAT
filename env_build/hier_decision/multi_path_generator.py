@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# =====================================
-# @Time    : 2020/10/12
-# @Author  : Yang Guan; Yangang Ren (Tsinghua Univ.)
-# @FileName: hier_decision.py
-# =====================================
 from env_build.dynamics_and_models import ReferencePath
 
 

@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# =====================================
-# @Time    : 2020/9/25
-# @Author  : Yang Guan (Tsinghua Univ.)
-# @FileName: ploter.py
-# =====================================
-
 import copy
 import os
 

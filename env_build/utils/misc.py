@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# =====================================
-# @Time    : 2020/8/10
-# @Author  : Yang Guan (Tsinghua Univ.)
-# @FileName: misc.py
-# =====================================
-
 import os
 import random
 import subprocess

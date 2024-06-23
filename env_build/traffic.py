@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# =====================================
-# @Time    : 2020/11/08
-# @Author  : Yang Guan (Tsinghua Univ.)
-# @FileName: traffic.py
-# =====================================
-
 import copy
 import math
 import os

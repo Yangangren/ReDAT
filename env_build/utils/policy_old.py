@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# =====================================
-# @Time    : 2021/3/3
-# @Author  : Yang Guan (Tsinghua Univ.)
-# @FileName: policy.py
-# =====================================
-
 import tensorflow as tf
 from tensorflow.keras.optimizers.schedules import PolynomialDecay
 
